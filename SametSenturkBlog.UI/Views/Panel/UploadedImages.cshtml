@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "UploadedImages";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+@using SametSenturkBlog.UI.Models.VM.Panel;
+
+@model List<UploadedImages>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>File Name</th>
+            <th>Server Path</th>
+            <th>Full Path for Connection</th>
+            <th>Add Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td><img src="@item.Path" style="height:150px;width:150px;" /></td>
+            <td>@item.FileName</td>
+            <td>@item.Path</td>
+            <td>@item.FullPath</td>
+            <td>@item.AddDate.ToString()</td>
+        </tr>
+        }
+    </tbody>
+</table>

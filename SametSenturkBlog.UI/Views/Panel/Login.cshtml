@@ -1,0 +1,46 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using SametSenturkBlog.UI.Models.Types;
+
+@model SametSenturkBlog.UI.Models.VM.Panel.LoginModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Panel/Login/login.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="login-page">
+        <div class="form">
+            @if (ViewBag.OperationStatus == EnumOperationType.Error)
+            {
+                <div class="alert alert-danger">@Html.ValidationSummary()</div>
+            }
+
+            @using (Html.BeginForm(FormMethod.Post, new { @class = "login-form" }))
+            {
+                @Html.AntiForgeryToken()
+
+               @Html.TextBoxFor(x => x.Username, new { placeholder = "Username", maxlength = "15", required = "required" })
+               @Html.PasswordFor(x => x.Password, new { placeholder = "Password", maxlength = "15", required = "required" })
+                <button type="submit">login</button>
+            }
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('.message a').click(function () {
+            $('form').animate({ height: "toggle", opacity: "toggle" }, "slow");
+        });
+    </script>
+</body>
+</html>

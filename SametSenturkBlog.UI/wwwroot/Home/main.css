@@ -1,0 +1,278 @@
+body{
+  background: #232526;
+}
+.side-parent{
+  margin-top: 50px;
+}
+
+.profile-top{
+  padding: 40px 40px;
+  color: white
+}
+.profile-top h2{
+  font-size: 1.75rem;
+  font-family: 'Kreon', serif;
+  padding: 20px 0;
+  text-align: center;
+}
+.profile-image{
+  width:150px;
+  height:150px;
+  margin:0 auto;
+}
+.profile-image img{
+  width: 100%;
+  border-radius: 50%;
+}
+
+.left-parent{
+  background: rgba(255,255,255,0.1);
+  margin-bottom: 30px;
+}
+
+.profil-social{
+  display: flex;
+  justify-content: center;
+}
+.profil-social a{
+  width: 50px;
+  height: 50px;
+  border-radius:50%;
+  margin: 0 5px;
+  background:rgba(0,0,0,0.07);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+}
+.profil-social a:hover{
+  background: #fff;
+  color: black !important;
+}
+.navbar-bottom{
+  display: flex;
+}
+.navbar-bottom .navbar-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-top: 1px solid #2d2929;
+  border-right: 1px solid #2d2929;
+  width: 25% !important;
+  height: 3.5rem;
+
+}
+.navbar-bottom .navbar-item:nth-child(4){
+  border-right: none;
+}
+.navbar-bottom .navbar-item i{
+  font-size: 1.25rem;
+  color: white;
+}
+
+.search{
+  display: flex;
+  justify-content: space-between;
+}
+.search input{
+  width: 80%;
+  background: transparent;
+  padding: 12px 10px;
+  border: none;
+  outline: none;
+  color: white;
+}
+.search .search-icon{
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.search .search-icon i{
+  color: #7b7d80;
+}
+.search .search-icon:hover{
+  background: #3E3F40;
+}
+.left-parent{
+  border-bottom: 1px solid #2d2929;
+}
+.left-parent-header h3{
+  background: rgba(255,255,255,0.1);
+    margin: 0;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1px;
+    color: #fff;
+    font-family: 'Kreon', serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .0625rem;
+    font-size: 1rem;
+    line-height: 3.75rem;
+    padding: 0 1.5rem;
+}
+.left-item-parent{
+  padding:20px;
+}
+.my-pages  a{
+  display: block;
+  padding: 7px 0;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+}
+.my-pages  a:hover{
+  color: rgba(255,255,255,0.9);
+}
+.tags-parent{
+  display: flex;
+  flex-wrap: wrap;
+}
+.tags a{
+  padding: .25rem 0.5rem;
+  background-color: rgba(255,255,255,0.09);
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  margin: 5px 5px;
+}
+.tags a:hover{
+  background-color: rgba(255,255,255,0.9);
+  color: black;
+}
+.category-list a{
+  display: block;
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+}
+.category-list a:hover{
+  color: rgba(255,255,255,0.9);
+}
+.post-parent{
+  background: white;
+  padding: 3rem;
+  margin-bottom:30px;
+}
+.post-parent h2 a{
+  color: #0064c4;
+  text-decoration: none;
+  line-height: 1;
+  font-size: 2.25rem;
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+  font-family: 'Kreon', serif;
+
+}
+.post-parent h2 a:hover{
+  color: black;
+
+}
+.information{
+  display: flex;
+}
+.information p{
+  font-size: 0.75rem;
+  color: #666;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+.post-body{
+  line-height: 1.6;
+}
+.pagination{
+  display: flex !important;
+  justify-content: center !important;
+}
+.suggest-parent{
+  background: white;
+  padding: 40px;
+  margin-bottom:30px;
+}
+.suggest-item{
+  border-bottom: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  
+}
+.suggest-item a{
+  font-size: 1rem;
+  text-decoration: none;
+}
+.suggest-item small{
+  font-size: 10px;
+}
+
+.comment{
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding:40px;
+  margin-bottom:10px;
+}
+.form-control{
+  margin-bottom:10px;
+}
+.subscribe{
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+.subscribe h4{
+  font-size: 20px;
+  margin-left: 10px;
+  margin-bottom: 0;
+
+}
+@media only screen and (max-width: 600px) {
+  .profil-social a {
+      width: 40px;
+      height: 40px;
+  }
+  .profile-top p{
+    text-align: center;
+  }
+  .tags{
+    display: none;
+  }
+  .post-parag{
+    font-size: 12px;
+  }
+  .post-parent{
+    padding:20px;
+  }
+  .post-parent h2{
+    font-size: 20px;
+  }
+  .post-parent h2 a{
+    font-size:20px;;
+    line-height: 20px;
+  }
+  .information p{
+    font-size: 10px;
+  }
+  .suggest-parent{
+    padding:20px;
+  }
+  .comment {
+    padding:20px;
+  }
+  .subscribe h4{
+    font-size: 12px;
+    margin-left: 10px;
+    margin-bottom: 0;
+  }
+  .form-control::placeholder{
+    font-size:12px;
+  }
+  .comment button {
+    font-size: 12px;
+  }
+  .suggest-item a{
+    font-size:14px
+  }
+  .suggest-item small{
+    font-size: 9px;
+  }
+}

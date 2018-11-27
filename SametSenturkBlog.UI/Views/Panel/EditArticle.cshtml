@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "EditArticle";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+@using SametSenturkBlog.UI.Models.Types;
+
+@model SametSenturkBlog.UI.Models.VM.Panel.AddArticleModel
+
+@if (ViewBag.OperationStatus == EnumOperationType.Error)
+{
+    <div class="alert alert-danger">
+        @Html.ValidationSummary()
+    </div>
+}
+else if (ViewBag.OperationStatus == EnumOperationType.Success)
+{
+    <div class="alert alert-success">
+        Operation Completed
+    </div>
+}
+
+@using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x=>x.ID,new { value=Model.ID })
+
+    <div class="form-group">
+       <label>Title Image: </label>
+        <img src="@Model.PicPath" />
+    </div>
+    <div class="form-group">
+        <label>Subject: </label> @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", maxlength = "50", required = "required" })
+    </div>
+    <div class="form-group">
+        <label>Language: </label> @Html.DropDownListFor(x => x.LanguageType, Model.LanguageTypes, "Select", new { @class = "form-control", required = "required" })
+    </div>
+    <div class="form-group">
+        <label>Category: </label> @Html.DropDownListFor(x => x.CategoryId, Model.CategoryList, "Select", new { @class = "form-control", required = "required" })
+    </div>
+    <div class="form-group">
+        <div class="alert alert-warning">If you don't change Title Image, we won't change Title Image!</div>
+    </div>
+    <div class="form-group">
+        <div class="form-group">
+            <label>Title Image: </label> <input type="file" name="file" id="inputFile" />
+        </div>
+        <div class="form-group">
+            <label>Content: </label>
+            <br />
+            @Html.TextAreaFor(x => x.Content, new { id = "Content", required = "required" })
+        </div>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-info" type="submit">Update <i class="fa fa-edit"></i></button>
+    </div>
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/ckeditor/ckeditor.js"></script>
+
+<script type="text/javascript">
+
+    window.onload = function () {
+        CKEDITOR.replace('Content');
+    };
+
+</script>

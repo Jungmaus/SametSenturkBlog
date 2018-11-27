@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewData["Title"] = "Category List";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+@using SametSenturkBlog.UI.Models.VM.Panel;
+@using SametSenturkBlog.UI.Models.Types;
+@model List<CategoryModel>
+
+
+
+<span class="btn btn-success btn-block" style="float:right;" onclick="showModal()">Add Category <i class="fa fa-plus"></i></span>
+
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Language</th>
+            <th>Article Count</th>
+            <th>Add Date</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Language</td>
+                <td>@item.ArticleCount</td>
+                <td>@item.AddDate</td>
+                <td>
+                    @if (item.isDeletable)
+                    {
+                        <span class="btn btn-danger" onclick="deleteCategory(@item.ID)"><i class="fa fa-remove"></i></span>
+                    }
+                    <span class="btn btn-warning" onclick="editCategory(@item.ID)"><i class="fa fa-edit"></i></span>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div id="myModal" class="modal fade" role="dialog" style="display:none;">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="hideModal()">&times;</button>
+                <h4 class="modal-title" id="mheader"></h4>
+            </div>
+            <div class="modal-body" id="mbody">
+                <input type="hidden" id="hiddenId" />
+                <div class="form-group">
+                    <label>Name: </label> <input type="text" maxlength="20" name="Name" placeholder="Category Name" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Language Type: </label> @Html.DropDownList("DrpLanguageType",(List<SelectListItem>)ViewBag.languageTypes,"Select",new { @class="form-control" })
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-info" id="btnSave">Save <i class="fa fa-save"></i></button>
+                <button type="button" class="btn btn-default" onclick="hideModal()">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $("#btnSave").click(() => {
+        if ($("#hiddenId").val() == "") {
+            $.ajax({
+                url: "/Panel/AddCategory?name=" + $("input[name='Name']").val() + "&languageType=" + $("#DrpLanguageType").val(),
+                method: "POST",
+                success: (res) => {
+                    if (res == 1)
+                        location.reload();
+                    else
+                        alert("Already exist.");
+                },
+                failure: () => {
+                    alert("Error");
+                }
+            });
+        } else {
+            $.ajax({
+                url: "/Panel/EditCategory?id=" + $("#hiddenId").val() + "&name=" + $("input[name='Name']").val() + "&languageType=" + $("#DrpLanguageType").val(),
+                method: "POST",
+                success: (res) => {
+                    if (res == 1)
+                        location.reload();
+                    else
+                        alert("Error");
+                },
+                failure: () => {
+                    alert("Error");
+                }
+            });
+        }
+
+    });
+
+    function editCategory(id) {
+        $.ajax({
+            url: "/Panel/GetCategory?id=" + id,
+            method: "GET",
+            success: (res) => {
+                $("input[name='Name']").val(res.name);
+                $("#DrpLanguageType").val(res.languageType);
+                $("#hiddenId").val(res.id);
+                showModal();
+            },
+            failure: () => {
+                alert("Error");
+                location.reload();
+            }
+        });
+    }
+
+    function showModal() {
+        $("#myModal").addClass("in");
+        $("#myModal").attr("style", "display:block;");
+    }
+
+    function hideModal() {
+        $("#hiddenId").val("");
+        $("input[name='Name']").val("");
+        $("#myModal").removeClass("in");
+        $("#myModal").attr("style", "display:none;");
+    }
+
+    function deleteCategory(id) {
+        let result = prompt("If you write 'Iamsure' here. You gonna delete that.");
+        if (result == "Iamsure") {
+            $.ajax({
+                url: "/Panel/DeleteCategory?id=" + id,
+                method: "POST",
+                success: (res) => {
+                    if (res == 1)
+                        location.reload();
+                    else
+                        alert("Error");
+                }, failure: () => {
+                    alert("Error");
+                }
+            })
+        }
+
+    }
+</script>

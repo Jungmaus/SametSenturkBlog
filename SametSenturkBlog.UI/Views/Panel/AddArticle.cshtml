@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewData["Title"] = "Add Article";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+@using SametSenturkBlog.UI.Models.Types;
+
+@model SametSenturkBlog.UI.Models.VM.Panel.AddArticleModel
+
+@if(ViewBag.OperationStatus == EnumOperationType.Error)
+{
+    <div class="alert alert-danger">
+        @Html.ValidationSummary()
+    </div>
+}else if(ViewBag.OperationStatus == EnumOperationType.Success)
+{
+    <div class="alert alert-success">
+        Operation Completed
+    </div>
+}
+
+@using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="form-group">
+    <label>Subject: </label> @Html.TextBoxFor(x => x.Subject, new { @class = "form-control", maxlength = "50", required = "required" })
+</div>
+<div class="form-group">
+    <label>Language: </label> @Html.DropDownListFor(x => x.LanguageType, Model.LanguageTypes, "Select", new { @class = "form-control", required = "required" })
+</div>
+<div class="form-group">
+    <label>Category: </label> @Html.DropDownListFor(x => x.CategoryId, Model.CategoryList, "Select", new { @class = "form-control", required = "required" })
+</div>
+<div class="form-group">
+    <div class="form-group">
+        <label>Title Image: </label> <input type="file" name="file" id="inputFile" />
+    </div>
+    <div class="form-group">
+        <label>Content: </label>
+        <br />
+        @Html.TextAreaFor(x => x.Content, new { id = "Content", required = "required" })
+    </div>
+</div>
+<div class="form-group">
+    <button class="btn btn-info" type="submit">Save <i class="fa fa-save"></i></button>
+</div>
+}
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/ckeditor/ckeditor.js"></script>
+
+<script type="text/javascript">
+
+    window.onload = function () {
+        CKEDITOR.replace('Content');
+    };
+
+    //let inputFileNames = [];
+    //let inputFilePaths = [];
+
+    //$("#inputFile").change(() => {
+
+    //    $.ajax({
+    //        url: "/Panel/UploadImage",
+    //        method: "POST",
+    //        data: $("#inputFile").files[0],
+    //        success: (res) => {
+    //            inputFileNames.push($("#inputFile").files[0].name);
+    //            inputFilePaths.push($("#inputFile").files[0].name + "-" + res);
+    //            $("#divImageList").append("<div id='image-" + $("inputFile").files[0].name + "' class='imageDiv'><img src='" + res + "' style='height:75px;width:75px;'></div>");
+    //            $("#inputFile").attr("files", "");
+    //        },
+    //        failure: () => {
+    //            alert("Error");
+    //        }
+    //    });
+
+    //});
+
+    //$(".imageDiv").click(function () {
+
+    //    let id = $(this).attr("id");
+    //    id = id.replace("image-", "");
+
+    //    inputFileNames.splice($.inArray(id, inputFileNames), 1);
+
+    //    for (let i = 0; i < inputFilePaths.length; i++) {
+    //        if (inputFilePaths[i].indexOf(id) > -1) {
+    //            $.ajax({
+    //                url: "/Panel/DeleteImage",
+    //                method: "POST",
+    //                data: { model: inputFilePaths[i] },
+    //                success: () => {
+    //                    inputFileNames.splice($.inArray(inputFilePaths[i], inputFilePaths), 1);
+    //                    $(this).remove();
+    //                },
+    //                failure: () => {
+    //                    alert("Error");
+    //                }
+    //            });
+
+    //        }
+    //    }
+    //});
+
+</script>

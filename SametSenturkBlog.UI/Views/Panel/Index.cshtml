@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewData["Title"] = "Article List";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+@model List<SametSenturkBlog.UI.Models.VM.Panel.ArticleModel>
+
+
+<div class="row" style="float:right;">
+    <a href="@Url.Action("AddArticle","Panel")"><span class="btn btn-default" style="width:150px;">Add Article <i class="fa fa-plus"></i></span></a>
+</div>
+
+<br /><br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Read Count</th>
+            <th>Like Count</th>
+            <th>Don't Like Count</th>
+            <th>Word Count</th>
+            <th>Operations</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td><img src="@item.ImgPath" style="height:100px;height:100px;" /></td>
+            <td>@item.Title</td>
+            <td>@item.CategoryName</td>
+            <td><i class="fa fa-eye"></i> @item.SeeCount</td>
+            <td><i class="fa fa-hand-o-up"></i> @item.LikeCount</td>
+            <td><i class="fa fa-hand-o-down"></i> @item.DontLikeCount</td>
+            <td>@item.DescriptionCount</td>
+            <td>
+                <a href="@Url.Action("EditArticle","Panel",new { id=item.ID })"><span class="btn btn-warning"><i class="fa fa-edit"></i></span></a>
+                <span class="btn btn-danger" onclick="deleteArticle(@item.ID)"><i class="fa fa-remove"></i></span>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    function deleteArticle(id) {
+        var res = prompt("If you write 'Iamsure' to here, you gonna delete that.");
+        if (res == "Iamsure") {
+            $.ajax({
+                url: "/Panel/DeleteArticle?articleId=" + id,
+                method: "POST",
+                success: (res) => {
+                    if (res == 1) {
+                        location.reload();
+                    } else {
+                        alert("ERROR");
+                    }
+                },
+                failure: () => {
+                    alert("ERROR");
+                }
+            });
+        }
+    }
+</script>

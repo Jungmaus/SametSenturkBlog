@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewBag.Title - Samet Senturk</title>
+    <link href="https://fonts.googleapis.com/css?family=Kreon" rel="stylesheet">
+    <link href="~/Home/normalize.css" rel="stylesheet" />
+    <link href="~/Home/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link href="~/Home/main.css" rel="stylesheet" />
+</head>
+<body>
+    @Html.AntiForgeryToken()
+    <input type="hidden" value="@ViewBag.language" />
+
+    <div class="container">
+        <div class="row side-parent">
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="profile left-parent">
+                    <div class="profile-top">
+                        <div class="profile-image">
+                            <img src="~/Images/Home/samet.png" alt="Profile Image" />
+                        </div>
+                        <h2>Samet Şentürk</h2>
+                        @switch (ViewBag.language)
+                        {
+                            case "tr":
+                                <p>2000 doğumlu bir .NET geliştiricisi. Yeni teknolojilere meraklı, çalışkan, yazılım için gençliğini adamış birisi. Microsoft Fanatiği</p>
+                                break;
+                            case "en":
+                                <p>A .NET Developer born in 2000. Curious person for new technologies, hardworker. Microsoft Fanatic</p>
+                                break;
+                            case "de":
+                                <p>Ein Softwareentwickler, der im Jahr 2000 geboren wurde. Neugierige Person für neue Technologien, fleißiger. </p>
+                                break;
+                            default:
+                                <p>2000 doğumlu bir .NET geliştiricisi. Yeni teknolojilere meraklı, çalışkan, yazılım için gençliğini adamış birisi. Microsoft Fanatiği</p>
+                                break;
+                        }
+                        <div class="profil-social">
+                            <a class="social-item" onclick="window.open('https://www.facebook.com/sametsenturkk')">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                            <a class="social-item" onclick="window.open('https://www.instagram.com/samtsnturkk/')">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a class="social-item" onclick="window.open('https://www.linkedin.com/in/sametsenturkk/')">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                            <a class="social-item" onclick="window.open('https://github.com/Jungmaus')">
+                                <i class="fa fa-github" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="navbar-bottom">
+                        <a class="navbar-item" onclick="window.location = '@Url.Action("Home","Home",new { language=ViewBag.language })'">
+                            <i class="fa fa-home" aria-hidden="true"></i>
+                        </a>
+                        <a class="navbar-item" onclick="window.location = '/@ViewBag.language/@(ViewBag.language == "tr" ? "iletisim" : ViewBag.language == "en" ? "contact" : ViewBag.language == "de" ? "kommunikation" : "iletisim")'">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </a>
+                        <a class="navbar-item" onclick="window.location = '/@ViewBag.language/@(ViewBag.language == "tr" ? "dokumanlar" : ViewBag.language == "en" ? "documents" : ViewBag.language == "de" ? "unterlagen" : "dokumanlar")'">
+                            <i class="fa fa-file" aria-hidden="true"></i>
+                        </a>
+                        <a class="navbar-item" onclick="window.location = '/@ViewBag.language/@(ViewBag.language == "tr" ? "resimler" : ViewBag.language == "en" ? "images" : ViewBag.language == "de" ? "bilder" : "resimler")'">
+                            <i class="fa fa-image" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="search left-parent">
+                    <input type="text" placeholder="Search..">
+                    <div class="search-icon">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="my-pages left-parent">
+                    <div class="left-parent-header">
+                        @switch (ViewBag.language)
+                        {
+                            case "tr":
+                                <h3>SAYFALARIM</h3>
+                                break;
+                            case "en":
+                                <h3>PAGES</h3>
+                                break;
+                            case "de":
+                                <h3>SEITEN</h3>
+                                break;
+                            default:
+                                <h3>SAYFALARIM</h3>
+                                break;
+                        }
+                    </div>
+                    <div class="left-item-parent">
+                        @switch (ViewBag.language)
+                        {
+                            case "tr":
+                                <a href="/tr/dokumanlar">Dökümanlar</a>
+                                <a href="/tr/resimler">Resimler</a>
+                                <a href="/tr/iletisim">İletişim</a>
+                                break;
+                            case "en":
+                                <a href="/en/documents">Documents</a>
+                                <a href="/en/images">Images</a>
+                                <a href="/en/contact">Contact</a>
+                                break;
+                            case "de":
+                                <a href="/de/unterlagen">Unterlagen</a>
+                                <a href="/de/bilder">Bilder</a>
+                                <a href="/de/kommunikation">Kommunikation</a>
+                                break;
+                            default:
+                                <a href="/tr/dokumanlar">Dökümanlar</a>
+                                <a href="/tr/resimler">Resimler</a>
+                                <a href="/tr/iletisim">İletişim</a>
+                                break;
+                        }
+                    </div>
+                </div>
+                <div class="tags left-parent hidden-sm-down">
+                    <div class="left-parent-header">
+                        @switch (ViewBag.language)
+                        {
+                            case "tr":
+                                <h3>TAGLAR</h3>
+                                break;
+                            case "en":
+                                <h3>TAGS</h3>
+                                break;
+                            case "de":
+                                <h3>Etikett</h3>
+                                break;
+                            default:
+                                <h3>TAGLAR</h3>
+                                break;
+                        }
+                    </div>
+                    <div class="left-item-parent tags-parent">
+                        <div id="divTagList">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="category-list left-parent">
+                    <div class="left-parent-header">
+                        @switch (ViewBag.language)
+                        {
+                            case "tr":
+                                <h3>Kategoriler</h3>
+                                break;
+                            case "en":
+                                <h3>Categories</h3>
+                                break;
+                            case "de":
+                                <h3>Kategorien</h3>
+                                break;
+                            default:
+                                <h3>Kategoriler</h3>
+                                break;
+                        }
+                    </div>
+                    <div class="left-item-parent">
+                        <div id="divCategoryList">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12 col-xs-12">
+
+                @RenderBody()
+
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Home/bootstrap.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(() => {
+
+            let token = $("input[name='__RequestVerificationToken']").val();
+            let language = "@ViewBag.language";
+
+            $.ajax({
+                url: "/json/getTags?language=" + language,
+                method: "POST",
+                data: {
+                    __RequestVerificationToken: token
+
+                },
+                success: (res) => {
+                    for (let i = 0; i < res.length; i++) {
+                        $("#divTagList").append("<a href='/" + language + "/" + res[i].seoName + "'>" + res[i].name + "</a>");
+                        
+                    }
+                }
+            });
+
+            $.ajax({
+                url: "/json/getCategories?language=" + language,
+                method: "POST",
+                data: {
+                    __RequestVerificationToken: token
+
+                },
+                success: (res) => {
+                    for (let i = 0; i < res.length; i++) {
+                        $("#divCategoryList").append("<a href='/" + language + "/" + res[i].seoName + "'>" + res[i].name + "</a>");
+                    }
+                }
+            });
+
+        });
+    </script>
+    
+</body>
+</html>

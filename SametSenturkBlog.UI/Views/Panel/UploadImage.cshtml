@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewData["Title"] = "Upload Image";
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+
+@using (Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <img src="@ViewBag.path" />
+    <hr />
+    <input type="file" name="file" />
+    <button class="btn btn-info">Save</button>
+}
